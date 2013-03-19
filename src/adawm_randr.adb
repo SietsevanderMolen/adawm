@@ -2,6 +2,7 @@ with Ada.Strings.Unbounded;
 with xab;
 
 with AdaWM_Types;
+with AdaWM_Log;
 
 package body AdaWM_Randr is
    procedure Fake_Single_Screen (Connection : xab_types.xab_connection_t) is
@@ -9,6 +10,8 @@ package body AdaWM_Randr is
       root_screen : constant xab_types.xab_screen_t :=
          xab.xab_get_root_screen (Connection);
    begin
+      AdaWM_Log.Warning ("Faking single RandR screen");
+
       output.Rect.X      := 0;
       output.Rect.Y      := 0;
       output.Rect.Width  := root_screen.width_in_pixels;
@@ -20,6 +23,6 @@ package body AdaWM_Randr is
 
    procedure Initialize_Randr (Connection : xab_types.xab_connection_t) is
    begin
-      null;
+      AdaWM_Log.Info ("Initialising RandR");
    end Initialize_Randr;
 end AdaWM_Randr;

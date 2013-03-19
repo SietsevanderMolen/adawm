@@ -22,14 +22,10 @@ begin
 
    GNATCOLL.Traces.Increase_Indent;
    if xab.xab_has_randr (Global_X_Connection) then
-         AdaWM_Log.Info ("RandR extension found, initialising");
       AdaWM_Randr.Initialize_Randr (Global_X_Connection);
    elsif xab.xab_has_xinerama (Global_X_Connection) then
-         AdaWM_Log.Info ("Xinerama found, initialising");
       AdaWM_Xinerama.Initialize_Xinerama (Global_X_Connection);
    else
-      AdaWM_Log.Warning (
-         "No Randr or Xinerama extensions found, faking single randr screen");
       AdaWM_Randr.Fake_Single_Screen (Global_X_Connection);
    end if;
    AdaWM_Log.Decrease_Indent;
