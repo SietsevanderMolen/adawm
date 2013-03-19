@@ -30,6 +30,12 @@ begin
    end if;
    AdaWM_Log.Decrease_Indent;
 
+   if AdaWM_ControlGroups.Is_Enabled then
+      null;
+   else
+      null;
+   end if;
+
    AdaWM_Log.Decrease_Indent;
    AdaWM_Log.Info ("Quit AdaWM");
 end AdaWM;
