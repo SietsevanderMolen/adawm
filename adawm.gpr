@@ -19,7 +19,7 @@ project adawm_xab is
            "-gnaty3abcdefhiklmnoprstux",
            "-Wall",
            "-g",
-           "-O0",
+           "-O2",
            "-gnat05");
    end Compiler;
 
