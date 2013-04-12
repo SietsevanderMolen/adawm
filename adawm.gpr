@@ -1,8 +1,7 @@
 with "gnatcoll";
-with "libxcb_ada";
-with "libxab";
+with "/usr/share/ada/adainclude/xab";
 
-project adawm_xab is
+project adawm is
    type Yes_No is ("yes", "no");
    Coverage : Yes_No := External ("COVERAGE", "yes");
 
@@ -20,11 +19,6 @@ project adawm_xab is
            "-Wall",
            "-g",
            "-O2",
-           "-gnat05");
+           "-gnat12");
    end Compiler;
-
-   --package Linker is
-      --for Default_Switches ("Ada") use Linker'Default_Switches ("Ada");
-----         ("-lxcb_ada", "-lxab");
-   --end Linker;
-end adawm_xab;
+end adawm;
