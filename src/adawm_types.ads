@@ -1,4 +1,6 @@
 with Ada.Strings.Unbounded;
+with Ada.Containers.Doubly_Linked_Lists;
+
 with xab_types;
 
 package AdaWM_Types is
@@ -26,6 +28,9 @@ package AdaWM_Types is
       --  X, Y, width and height
       Rect : Rectangle;
    end record;
+
+   package Output_Container is
+      new Ada.Containers.Doubly_Linked_Lists(Output);
 
    type Virtual_Screen is record
       Num : Integer;

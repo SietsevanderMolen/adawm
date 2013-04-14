@@ -6,35 +6,38 @@ with GNATCOLL.Traces;
 with AdaWM_ControlGroups;
 with AdaWM_Log;
 with AdaWM_Randr;
-with AdaWM_Xinerama;
 
 procedure AdaWM is
    --  Our global connection to the X11 server
-   Global_X_Connection : xab_types.xab_connection_t;
+   --  Connect to the X11 display server. xab_connect checks if the connection
+   --  succeeded and raises ConnectionFailedException
+   Global_X_Connection : constant xab_types.xab_connection_t 
+      := xab.xab_connect;
+
+   --  Init cgroups if these are available
+   procedure Init_CGroups;
+   procedure Init_CGroups is
+   begin
+      if AdaWM_ControlGroups.Is_Enabled then
+         null;
+      end if;
+   end Init_CGroups;
+
+   --  Init the outputs according to their configuration
+   procedure Init_Outputs;
+   procedure Init_Outputs
+   is
+   begin
+      GNATCOLL.Traces.Increase_Indent;
+      AdaWM_Randr.Fake_Single_Screen (Global_X_Connection);
+      AdaWM_Log.Decrease_Indent;
+   end Init_Outputs;
 begin
    AdaWM_Log.Info ("Starting AdaWM");
    AdaWM_Log.Increase_Indent;
 
-   --  Connect to the X11 display server. xab_connect checks if the connection
-   --  succeeded and raises ConnectionFailedException
-   Global_X_Connection := xab.xab_connect;
-   AdaWM_Log.Info ("Global X11 connection established");
-
-   GNATCOLL.Traces.Increase_Indent;
-   if xab.xab_has_randr (Global_X_Connection) then
-      AdaWM_Randr.Initialize_Randr (Global_X_Connection);
-   elsif xab.xab_has_xinerama (Global_X_Connection) then
-      AdaWM_Xinerama.Initialize_Xinerama (Global_X_Connection);
-   else
-      AdaWM_Randr.Fake_Single_Screen (Global_X_Connection);
-   end if;
-   AdaWM_Log.Decrease_Indent;
-
-   if AdaWM_ControlGroups.Is_Enabled then
-      null;
-   else
-      null;
-   end if;
+   Init_Outputs;
+   Init_CGroups;
 
    AdaWM_Log.Decrease_Indent;
    AdaWM_Log.Info ("Quit AdaWM");
