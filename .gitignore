@@ -1,6 +1,9 @@
 *.ali
 *.o
 *.a
+*.cgpr
+*.bexch
 out/*
-exe/*
-obj/*
+obj/*.ads
+obj/*.adb
+exe/adawm
