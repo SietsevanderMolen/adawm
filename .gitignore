@@ -3,7 +3,7 @@
 *.a
 *.cgpr
 *.bexch
-out/*
-obj/*.ads
-obj/*.adb
-exe/adawm
+out/
+build/
+exe/
+obj/
