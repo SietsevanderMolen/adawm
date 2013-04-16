@@ -12,3 +12,6 @@ coverage:
 clean:
 	gprclean -Padawm/adawm
 	gprclean -Pharness/harness
+	rm adawm/obj/* -rf
+	rm harness/obj/* -rf
+	rm out/* -rf
