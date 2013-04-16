@@ -20,5 +20,11 @@ project adawm is
            "-g",
            "-O2",
            "-gnat12");
+      case Coverage is
+         when "yes" =>
+            for Default_Switches ("ada") use Compiler'Default_Switches ("ada") &
+               ("-fprofile-arcs", "-ftest-coverage");
+         when others =>
+      end case;
    end Compiler;
 end adawm;
