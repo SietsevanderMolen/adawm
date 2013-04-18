@@ -1,6 +1,8 @@
 with "aunit";
 with "../adawm/adawm";
 
+with "xab";
+
 project Harness is
    for Languages use ("Ada");
    for Main use ("test_adawm.adb");
