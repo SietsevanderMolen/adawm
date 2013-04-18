@@ -5,7 +5,7 @@ project Harness is
    for Languages use ("Ada");
    for Main use ("test_adawm.adb");
    for Source_Dirs use ("fixture", "tests");
-   for Exec_Dir use "..";
+   for Exec_Dir use "../out";
    for Object_Dir use "obj";
 
    package Linker is

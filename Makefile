@@ -1,11 +1,11 @@
 all:
-	gprbuild -p -Padawm/adawm -o ../../out/adawm
+	gprbuild -p -Padawm/adawm
 
 test:
-	gprbuild -p -f -Pharness/harness -o out/test_adawm
+	gprbuild -p -f -Pharness/harness
 
 coverage:
-	gprbuild -p -f -Pharness/harness -XCOVERAGE=yes -o out/test_adawm
+	gprbuild -p -f -Pharness/harness -XCOVERAGE=yes
 	./out/test_adawm
 	cd harness/obj; gcov ../../adawm/obj/*.gcda
 
