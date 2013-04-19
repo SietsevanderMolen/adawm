@@ -19,6 +19,5 @@ package body AdaWM_Randr_Tests is
    procedure Test_Fake_Single_Screen_Exception_Absence is
    begin
         AdaWM_Randr.Fake_Single_Screen (Global_X_Connection);
-      --  assert (True, "fake test");
    end Test_Fake_Single_Screen_Exception_Absence;
 end AdaWM_Randr_Tests;
