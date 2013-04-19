@@ -6,5 +6,6 @@ package AdaWM_Randr_Tests is
    procedure Initialize (T : in out Test);
 
 private
+   --  Tests if Fake_Single_Screen throws no exception
    procedure Test_Fake_Single_Screen_Exception_Absence;
 end AdaWM_Randr_Tests;
