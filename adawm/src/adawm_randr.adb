@@ -20,7 +20,7 @@ package body AdaWM_Randr is
       output.Name        :=
          Ada.Strings.Unbounded.To_Unbounded_String ("xroot-0");
 
-      --  output_init_con(s);
+      Initialize_Con (output); --  output_init_con(s);
       --  init_ws_for_output(s, output_get_content(s->con));
       --  TAILQ_INSERT_TAIL(&outputs, s, outputs);
       Initialize_Con (output);

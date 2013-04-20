@@ -8,4 +8,5 @@ package AdaWM_Randr_Tests is
 private
    --  Tests if Fake_Single_Screen throws no exception
    procedure Test_Fake_Single_Screen_Exception_Absence;
+   procedure Test_Initialize_Con;
 end AdaWM_Randr_Tests;
