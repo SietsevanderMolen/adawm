@@ -1,16 +1,16 @@
 with Ada.Strings.Unbounded;
 with xab;
 
-with AdaWM_Log;
+with Log;
 with Cons;
 
-package body AdaWM_Randr is
+package body Randr is
    procedure Fake_Single_Screen (Connection : xab_types.xab_connection_t) is
-      output : AdaWM_Types.Output;
+      output : Types.Output;
       root_screen : constant xab_types.xab_screen_t :=
          xab.xab_get_root_screen (Connection);
    begin
-      AdaWM_Log.Warning ("Faking single RandR screen");
+      Log.Warning ("Faking single RandR screen");
 
       output.Rect.X      := 0;
       output.Rect.Y      := 0;
@@ -23,13 +23,12 @@ package body AdaWM_Randr is
       Initialize_Con (output); --  output_init_con(s);
       --  init_ws_for_output(s, output_get_content(s->con));
       --  TAILQ_INSERT_TAIL(&outputs, s, outputs);
-      Initialize_Con (output);
    end Fake_Single_Screen;
 
-   procedure Initialize_Con (Output : AdaWM_Types.Output) is
+   procedure Initialize_Con (Output : Types.Output) is
       con : Cons.Con;
    begin
-      AdaWM_Log.Info ("Initializing con for output "
+      Log.Info ("Initializing con for output "
          & Ada.Strings.Unbounded.To_String (Output.Name));
 
       --  Search for a Con with that name directly below the root node. There
@@ -41,7 +40,7 @@ package body AdaWM_Randr is
    procedure Initialize_Randr (Connection : xab_types.xab_connection_t) is
       Not_Implemented : exception;
    begin
-      AdaWM_Log.Info ("Initialising RandR");
+      Log.Info ("Initialising RandR");
       raise Not_Implemented
          with "Real Randr is not implemented and should never be called";
    end Initialize_Randr;
@@ -62,4 +61,4 @@ package body AdaWM_Randr is
    begin
       null;
    end Query_Outputs;
-end AdaWM_Randr;
+end Randr;

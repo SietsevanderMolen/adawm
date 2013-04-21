@@ -1,6 +1,6 @@
 with GNATCOLL.Traces;
 
-package body AdaWM_Log is
+package body Log is
    --  Declare and initialise a logging trace
    Debug_Stream : constant GNATCOLL.Traces.Trace_Handle :=
       GNATCOLL.Traces.Create ("Debug");
@@ -50,4 +50,4 @@ package body AdaWM_Log is
 begin
    --  Parse the ./.gnatdebug file for trace options
    GNATCOLL.Traces.Parse_Config_File;
-end AdaWM_Log;
+end Log;

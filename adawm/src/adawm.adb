@@ -3,9 +3,9 @@ with xab;
 with xab_types;
 with GNATCOLL.Traces;
 
-with AdaWM_ControlGroups;
-with AdaWM_Log;
-with AdaWM_Randr;
+with ControlGroups;
+with Log;
+with Randr;
 
 procedure AdaWM is
    --  Our global connection to the X11 server
@@ -18,7 +18,7 @@ procedure AdaWM is
    procedure Init_CGroups;
    procedure Init_CGroups is
    begin
-      if AdaWM_ControlGroups.Is_Enabled then
+      if ControlGroups.Is_Enabled then
          null;
       end if;
    end Init_CGroups;
@@ -29,16 +29,16 @@ procedure AdaWM is
    is
    begin
       GNATCOLL.Traces.Increase_Indent;
-      AdaWM_Randr.Fake_Single_Screen (Global_X_Connection);
-      AdaWM_Log.Decrease_Indent;
+      Randr.Fake_Single_Screen (Global_X_Connection);
+      Log.Decrease_Indent;
    end Init_Outputs;
 begin
-   AdaWM_Log.Info ("Starting AdaWM");
-   AdaWM_Log.Increase_Indent;
+   Log.Info ("Starting AdaWM");
+   Log.Increase_Indent;
 
    Init_Outputs;
    Init_CGroups;
 
-   AdaWM_Log.Decrease_Indent;
-   AdaWM_Log.Info ("Quit AdaWM");
+   Log.Decrease_Indent;
+   Log.Info ("Quit AdaWM");
 end AdaWM;

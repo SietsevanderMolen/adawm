@@ -1,7 +1,7 @@
 with Ada.Containers.Doubly_Linked_Lists;
 with Ada.Strings.Unbounded;
 
-with AdaWM_Types;
+with Types;
 with xab_types;
 
 --  A 'Con' represents everything from the X11 root window down to a single X11
@@ -11,21 +11,21 @@ package Cons is
       (CT_ROOT, CT_OUTPUT, CT_CON, CT_FLOATING_CON, CT_WORKSPACE);
    type Fullscreen_Mode_Type is (CF_NONE, CF_OUTPUT, CF_GLOBAL);
 
-         --  layout is the layout of this container: one of split[v|h], stacked
-         --  or tabbed. Special containers in the tree (above workspaces) have
-         --  special layouts like dockarea or output.
+   --  layout is the layout of this container: one of split[v|h], stacked
+   --  or tabbed. Special containers in the tree (above workspaces) have
+   --  special layouts like dockarea or output.
 
-         --  last_split_layout is one of splitv or splith to support the old
-         --  "layout default" command which by now should be "layout splitv" or
-         --  "layout splith" explicitly.
+   --  last_split_layout is one of splitv or splith to support the old
+   --  "layout default" command which by now should be "layout splitv" or
+   --  "layout splith" explicitly.
 
-         --  workspace_layout is only for type == CT_WORKSPACE cons. When you
-         --  change the layout of a workspace without any children, i3 cannot
-         --  just set the layout (because workspaces need to be splitv/splith
-         --  to allow focus parent and opening new containers). Instead, it
-         --  stores the requested layout in workspace_layout and creates a new
-         --  split container with that layout whenever a new container is
-         --  attached to the workspace.
+   --  workspace_layout is only for type == CT_WORKSPACE cons. When you
+   --  change the layout of a workspace without any children, i3 cannot
+   --  just set the layout (because workspaces need to be splitv/splith
+   --  to allow focus parent and opening new containers). Instead, it
+   --  stores the requested layout in workspace_layout and creates a new
+   --  split container with that layout whenever a new container is
+   --  attached to the workspace.
    type Layout_Type is (L_DEFAULT, L_STACKED, L_TABBED, L_DOCKAREA, L_OUTPUT,
       L_SPLITV, L_SPLITH);
 
@@ -60,11 +60,11 @@ private
          CType  : Con_Type;
          Parent : Con_Access;
 
-         Rect        : AdaWM_Types.Rectangle;
-         Window_Rect : AdaWM_Types.Rectangle;
-         Deco_Rect   : AdaWM_Types.Rectangle;
+         Rect        : Types.Rectangle;
+         Window_Rect : Types.Rectangle;
+         Deco_Rect   : Types.Rectangle;
          --  The geometry this window requested when getting mapped
-         Geometry    : AdaWM_Types.Rectangle;
+         Geometry    : Types.Rectangle;
 
          Name : Ada.Strings.Unbounded.Unbounded_String;
 
@@ -90,7 +90,7 @@ private
          Width_Increment  : Positive;
          Height_Increment : Positive;
 
-         --  Window : AdaWM_Types.Window; TODO
+         --  Window : Types.Window; TODO
 
          --  Should this container be marked urgent? This gets set when the
          --  window inside this container (if any) sets the urgency hint, for

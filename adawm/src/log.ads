@@ -1,4 +1,4 @@
-package AdaWM_Log is
+package Log is
    procedure Debug   (Message : String);
    procedure Info    (Message : String);
    procedure Warning (Message : String);
@@ -7,4 +7,4 @@ package AdaWM_Log is
 
    procedure Decrease_Indent;
    procedure Increase_Indent;
-end AdaWM_Log;
+end Log;

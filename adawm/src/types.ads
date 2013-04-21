@@ -3,7 +3,7 @@ with Ada.Containers.Doubly_Linked_Lists;
 
 with xab_types;
 
-package AdaWM_Types is
+package Types is
    type Rectangle is record
       X      : Integer;
       Y      : Integer;
@@ -36,4 +36,4 @@ package AdaWM_Types is
       Num : Integer;
       Rect : Rectangle;
    end record;
-end AdaWM_Types;
+end Types;
