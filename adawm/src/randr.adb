@@ -1,8 +1,9 @@
 with Ada.Strings.Unbounded;
 with xab;
 
-with Log;
 with Cons;
+with Log;
+with Trees;
 
 package body Randr is
    procedure Fake_Single_Screen (Connection : xab_types.xab_connection_t) is
@@ -27,6 +28,7 @@ package body Randr is
 
    procedure Initialize_Con (Output : Types.Output) is
       con : Cons.Con;
+      T : Trees.Tree := Trees.Create;
    begin
       Log.Info ("Initializing con for output "
          & Ada.Strings.Unbounded.To_String (Output.Name));
