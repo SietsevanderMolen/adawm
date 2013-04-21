@@ -34,26 +34,17 @@ package Cons is
    --  (by setting _NET_WM_WINDOW_TYPE appropriately) or by the user. The
    --  user’s choice overwrites automatic mode, of course. The order of the
    --  values is important because we check with >=
-   --  FLOATING_AUTO_ON if a client is floating.
+   --  FLOATING_AUTO_ON if a client is floating. (ADAWM addition: bullshit, we
+   --  are not going to do that.)
    type Floating_Mode is (FLOATING_AUTO_OFF, FLOATING_USER_OFF,
                           FLOATING_AUTO_ON, FLOATING_USER_ON);
 
-   type Con is tagged private;
+   type Con;
    type Con_Access is access Con;
 
    package Con_List is new Ada.Containers.Doubly_Linked_Lists (Con_Access);
    --  package Match_List is new Ada.Containers.Doubly_Linked_Lists (Match);
 
-   --  Create a new container
-   --  This function initializes the data structures and creates the right
-   --  X11 IDs using x_con_init().
-   function Make_Con (parent : Con'Class) return Con;
-
-   --  Create a new container (and attach it to the given parent).
-   --  This function initializes the data structures and creates the right
-   --  X11 IDs using x_con_init().
-   function Make_Con return Con;
-private
    type Con is tagged
       record
          Mapped : Boolean;
@@ -148,8 +139,30 @@ private
          --  SCRATCHPAD_CHANGED = 2
          --  } scratchpad_state;
 
-         --  --  The ID of this container before restarting. Necessary to correctly
-         --  --  interpret back-references in the JSON (such as the focus stack)
+         --  The ID of this container before restarting. Necessary to correctly
+         --  interpret back-references in the JSON (such as the focus stack)
          --  int old_id;
       end record;
+
+   --  Create a new container
+   --  This function initializes the data structures and creates the right
+   --  X11 IDs using x_con_init().
+   function Create return Con;
+
+   --  Create a new container, and attach it to the given parent.
+   --  This function initializes the data structures and creates the right
+   --  X11 IDs using x_con_init().
+   function Create (parent : Con) return Con;
+
+   --  Attaches the given container to the given parent. This happens when
+   --  moving a container or when inserting a new container at a specific place
+   --  in the tree.
+   --  ignore_focus is to just insert the Con at the end (useful when creating
+   --  a new split container *around* some containers, that is, detaching and
+   --  attaching them in order without wanting to mess with the focus in
+   --  between).
+   function Attach_To (C            : Con;
+                       Parent       : Con;
+                       Ignore_Focus : Boolean)
+                      return Con;
 end Cons;

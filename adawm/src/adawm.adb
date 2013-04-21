@@ -1,18 +1,21 @@
 --  vim:ts=3:expandtab:tw=79:colorcolumn=79
 with xab;
 with xab_types;
-with GNATCOLL.Traces;
 
 with ControlGroups;
 with Log;
 with Randr;
+with Trees;
 
 procedure AdaWM is
    --  Our global connection to the X11 server
    --  Connect to the X11 display server. xab_connect checks if the connection
    --  succeeded and raises ConnectionFailedException
-   Global_X_Connection : constant xab_types.xab_connection_t 
+   Global_X_Connection : constant xab_types.xab_connection_t
       := xab.xab_connect;
+
+   --  Our global tree representing the collection of cons
+   Global_Tree : Trees.Tree := Trees.Create;
 
    --  Init cgroups if these are available
    procedure Init_CGroups;
@@ -23,14 +26,12 @@ procedure AdaWM is
       end if;
    end Init_CGroups;
 
-   --  Init the outputs according to their configuration
+   --  Init the outputs according to their physical configuration
    procedure Init_Outputs;
    procedure Init_Outputs
    is
    begin
-      GNATCOLL.Traces.Increase_Indent;
-      Randr.Fake_Single_Screen (Global_X_Connection);
-      Log.Decrease_Indent;
+      Randr.Fake_Single_Screen (Global_X_Connection, Global_Tree);
    end Init_Outputs;
 begin
    Log.Info ("Starting AdaWM");

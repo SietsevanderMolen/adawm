@@ -1,12 +1,13 @@
 with Ahven; use Ahven;
 
-  with Randr;
-  --  with Types;
-  with xab;
-  with xab_types;
+with xab;
+with xab_types;
+
+with Randr;
+with Trees;
 
 package body Randr_Tests is
-     Global_X_Connection : constant xab_types.xab_connection_t 
+     X_Connection : constant xab_types.xab_connection_t 
         := xab.xab_connect;
 
    procedure Initialize (T : in out Test) is
@@ -20,8 +21,9 @@ package body Randr_Tests is
    end Initialize;
 
    procedure Test_Fake_Single_Screen_Exception_Absence is
+      Test_Tree : constant Trees.Tree := Trees.Create;
    begin
-        Randr.Fake_Single_Screen (Global_X_Connection);
+        Randr.Fake_Single_Screen (X_Connection, Test_Tree);
    end Test_Fake_Single_Screen_Exception_Absence;
 
    procedure Test_Initialize_Con is

@@ -1,13 +1,19 @@
 with xab_types;
-with Types;
+
+with Cons;
+with Outputs;
+with Trees;
 
 package Randr is
-   Output_List : Types.Output_Container.List;
+   Output_List : Outputs.Output_Container.List;
 
    procedure Initialize_Randr (Connection : xab_types.xab_connection_t);
-   procedure Initialize_Con (Output : Types.Output);
+   function Initialize_Con (Output : Outputs.Output;
+                            Tree   : Trees.Tree)
+                           return Cons.Con;
 
-   procedure Fake_Single_Screen (Connection : xab_types.xab_connection_t);
+   procedure Fake_Single_Screen (Connection : xab_types.xab_connection_t;
+                                 Tree       : Trees.Tree);
 
    procedure Query_Outputs
       (Connection : xab_types.xab_connection_t;
