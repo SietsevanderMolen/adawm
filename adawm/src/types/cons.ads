@@ -33,9 +33,9 @@ package Cons is
    --  we want to keep track of whether the status was set by the application
    --  (by setting _NET_WM_WINDOW_TYPE appropriately) or by the user. The
    --  user’s choice overwrites automatic mode, of course. The order of the
-   --  values is important because we check with >=
-   --  FLOATING_AUTO_ON if a client is floating. (ADAWM addition: bullshit, we
-   --  are not going to do that.)
+   --  values is important because we check with >= FLOATING_AUTO_ON if a
+   --  client is floating. (ADAWM addition: bullshit, we are not going to do
+   --  that.)
    type Floating_Mode is (FLOATING_AUTO_OFF, FLOATING_USER_OFF,
                           FLOATING_AUTO_ON, FLOATING_USER_ON);
 
@@ -60,8 +60,7 @@ package Cons is
          Name : Ada.Strings.Unbounded.Unbounded_String;
 
          --  The workspace number, if this Con is of type CT_WORKSPACE and the
-         --  workspace is not a named workspace
-         --  (for named workspaces, Number == -1)
+         --  workspace is not a named workspace --  (for named workspaces, Number == -1)
          Number : Natural;
 
          --  Proportional width/height, calculated from WM_NORMAL_HINTS, used

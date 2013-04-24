@@ -23,7 +23,7 @@ package body Randr is
 
       output.Con := Initialize_Con (Output => output,
                                     Tree   => Tree); --  output_init_con(s);
-      --  init_ws_for_output(s, output_get_content(s->con));
+      Outputs.Init_Workspace (output);
       --  TAILQ_INSERT_TAIL(&outputs, s, outputs);
       Log.Decrease_Indent;
    end Fake_Single_Screen;

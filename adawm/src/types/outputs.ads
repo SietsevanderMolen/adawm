@@ -29,4 +29,12 @@ package Outputs is
 
    package Output_Container is
       new Ada.Containers.Doubly_Linked_Lists (Output);
+
+   --  Initializes at least one workspace for this output, trying the following
+   --  steps until there is at least one workspace:
+   --  • Move existing workspaces, which are assigned to be on the given
+   --    output, to the output. NOT IMPLEMENTED
+   --  • Create the first assigned workspace for this output. NOT IMPLEMENTED
+   --  • Create the first unused workspace.
+   procedure Init_Workspace (o : in out Output);
 end Outputs;
