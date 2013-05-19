@@ -36,5 +36,10 @@ package Outputs is
    --    output, to the output. NOT IMPLEMENTED
    --  • Create the first assigned workspace for this output. NOT IMPLEMENTED
    --  • Create the first unused workspace.
-   procedure Init_Workspace (o : in out Output);
+   procedure Init_Workspace (o : in out Output;
+                             c : in out Cons.Con);
+
+   function Create_Workspace_On_Output (o : in out Output;
+                                        c : in out Cons.Con)
+                                        return Cons.Con;
 end Outputs;

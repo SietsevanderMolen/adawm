@@ -23,7 +23,7 @@ package body Randr is
 
       output.Con := Initialize_Con (Output => output,
                                     Tree   => Tree); --  output_init_con(s);
-      Outputs.Init_Workspace (output);
+      Outputs.Init_Workspace (output, output.Con);
       --  TAILQ_INSERT_TAIL(&outputs, s, outputs);
       Log.Decrease_Indent;
    end Fake_Single_Screen;
@@ -66,7 +66,7 @@ package body Randr is
       Content.Name := Ada.Strings.Unbounded.To_Unbounded_String ("content");
       --  x_set_name (con, "[adawm con] content ", Content.Name);
       --  Content.Attach_To is disabled until it is implemented in cons.adb
-      --  Content := Content.Attach_To (con, False);
+      Content := Content.Attach_To (con, False);
 
       --  Bottom dockarea could be added here TODO
       return con;

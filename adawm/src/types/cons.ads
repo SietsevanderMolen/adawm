@@ -40,7 +40,7 @@ package Cons is
                           FLOATING_AUTO_ON, FLOATING_USER_ON);
 
    type Con;
-   type Con_Access is access Con;
+   type Con_Access is access all Con;
 
    package Con_List is new Ada.Containers.Doubly_Linked_Lists (Con_Access);
    --  package Match_List is new Ada.Containers.Doubly_Linked_Lists (Match);
@@ -60,7 +60,8 @@ package Cons is
          Name : Ada.Strings.Unbounded.Unbounded_String;
 
          --  The workspace number, if this Con is of type CT_WORKSPACE and the
-         --  workspace is not a named workspace --  (for named workspaces, Number == -1)
+         --  workspace is not a named workspace
+         --  (for named workspaces, Number == -1)
          Number : Natural;
 
          --  Proportional width/height, calculated from WM_NORMAL_HINTS, used
@@ -151,7 +152,7 @@ package Cons is
    --  Create a new container, and attach it to the given parent.
    --  This function initializes the data structures and creates the right
    --  X11 IDs using x_con_init().
-   function Create (parent : Con) return Con;
+   function Create (parent : in out Con) return Con;
 
    --  Attaches the given container to the given parent. This happens when
    --  moving a container or when inserting a new container at a specific place
@@ -160,8 +161,8 @@ package Cons is
    --  a new split container *around* some containers, that is, detaching and
    --  attaching them in order without wanting to mess with the focus in
    --  between).
-   function Attach_To (C            : Con;
-                       Parent       : Con;
-                       Ignore_Focus : Boolean)
+   function Attach_To (Child_Con    : in out Con;
+                       Parent_Con   : in out Con;
+                       Ignore_Focus : in Boolean)
                       return Con;
 end Cons;
