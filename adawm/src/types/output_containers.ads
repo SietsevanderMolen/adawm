@@ -1,14 +1,14 @@
 with Ada.Strings.Unbounded;
-with Cons;
+
 with xab_types;
 
+with Cons;
 with Rectangles;
 
 package Output_Containers is
-   type Output_Container;
-   type Output_Container_Access is access all Output_Container;
-
    type Output_Container is new Cons.Con with private;
+
+   function Is_Active (OC : Output_Container) return Boolean;
 private
    type Output_Container is new Cons.Con with
       record
