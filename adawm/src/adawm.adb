@@ -13,9 +13,6 @@ procedure AdaWM is
    --  succeeded and raises ConnectionFailedException
    Global_X_Connection : xab_types.xab_connection_t;
 
-   --  Our global tree representing the collection of cons
-   Global_Tree : Trees.Containers.Tree;
-
    --  Init cgroups if these are available
    procedure Init_CGroups;
    procedure Init_CGroups is
@@ -30,14 +27,13 @@ procedure AdaWM is
    procedure Init_Outputs
    is
    begin
-      Randr.Fake_Single_Screen (Global_X_Connection, Global_Tree);
+      Randr.Fake_Single_Screen (Global_X_Connection);
    end Init_Outputs;
 begin
    Log.Info ("Starting AdaWM");
    Log.Increase_Indent;
 
    Global_X_Connection := xab.xab_connect;
-   Global_Tree         := Trees.Make;
 
    Init_Outputs;
    Init_CGroups;

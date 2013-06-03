@@ -3,10 +3,11 @@ with xab;
 
 with Output_Containers;
 with Log;
+with Tree_Manager;
 
 package body Randr is
-   procedure Fake_Single_Screen (Connection : xab_types.xab_connection_t;
-                                 Tree       : Trees.Containers.Tree) is
+   --  Creates a single output stretching across the entire root_screen
+   procedure Fake_Single_Screen (Connection : xab_types.xab_connection_t) is
       output : Output_Containers.Output_Container;
       root_screen : constant xab_types.xab_screen_t :=
          xab.xab_get_root_screen (Connection);
@@ -24,10 +25,9 @@ package body Randr is
       --  Set this output to active
       output.Set_Active (Is_Active => True);
 
-      --  output.Con := Initialize_Con (Output => output,
-      --  Tree   => Tree); --  output_init_con(s);
-      --  Outputs.Init_Workspace (output, output.Con);
-      --  TAILQ_INSERT_TAIL(&outputs, s, outputs);
+      --  Init output here
+      Tree_Manager.Add_Output_Container (output);
+
       Log.Decrease_Indent;
    end Fake_Single_Screen;
 

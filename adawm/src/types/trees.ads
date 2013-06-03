@@ -2,6 +2,7 @@ with Ada.Containers.Indefinite_Multiway_Trees; use Ada.Containers;
 
 with Cons; use Cons;
 with Log;
+with Output_Containers;
 
 --  The tree data structure contains all the Cons in the system
 package Trees is
