@@ -1,6 +1,5 @@
 with xab_types;
 
-with Cons;
 with Trees;
 
 package Randr is
