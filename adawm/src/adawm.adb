@@ -11,8 +11,7 @@ procedure AdaWM is
    --  Our global connection to the X11 server
    --  Connect to the X11 display server. xab_connect checks if the connection
    --  succeeded and raises ConnectionFailedException
-   Global_X_Connection : constant xab_types.xab_connection_t
-      := xab.xab_connect;
+   Global_X_Connection : xab_types.xab_connection_t;
 
    --  Our global tree representing the collection of cons
    Global_Tree : Trees.Containers.Tree;
@@ -36,6 +35,9 @@ procedure AdaWM is
 begin
    Log.Info ("Starting AdaWM");
    Log.Increase_Indent;
+
+   Global_X_Connection := xab.xab_connect;
+   Global_Tree         := Trees.Make;
 
    Init_Outputs;
    Init_CGroups;
