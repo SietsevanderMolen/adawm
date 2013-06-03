@@ -15,7 +15,7 @@ procedure AdaWM is
       := xab.xab_connect;
 
    --  Our global tree representing the collection of cons
-   Global_Tree : Trees.Tree := Trees.Create;
+   Global_Tree : Trees.Containers.Tree;
 
    --  Init cgroups if these are available
    procedure Init_CGroups;

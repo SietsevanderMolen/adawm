@@ -8,10 +8,12 @@ package Cons is
    type Con;
    type Con_Access is access all Con;
 
-   type Con is abstract tagged
+   type Con is tagged
       record
          Parent : Con_Access;
          Rect   : Rectangles.Rectangle;
          Name   : Ada.Strings.Unbounded.Unbounded_String;
       end record;
+
+   function "="(a, b: Con) return Boolean;
 end Cons;

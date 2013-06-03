@@ -1,12 +1,13 @@
 with Ada.Strings.Unbounded;
 with xab;
 
+with Output_Containers;
 with Log;
 
 package body Randr is
    procedure Fake_Single_Screen (Connection : xab_types.xab_connection_t;
-                                 Tree       : Trees.Tree) is
-      output : Outputs.Output;
+                                 Tree       : Trees.Containers.Tree) is
+      output : Output_Containers.Output_Container;
       root_screen : constant xab_types.xab_screen_t :=
          xab.xab_get_root_screen (Connection);
    begin
@@ -17,60 +18,16 @@ package body Randr is
       output.Rect.Y      := 0;
       output.Rect.Width  := root_screen.width_in_pixels;
       output.Rect.Height := root_screen.height_in_pixels;
-      output.Active      := True;
+      --output.Active      := True;
       output.Name        :=
          Ada.Strings.Unbounded.To_Unbounded_String ("xroot-0");
 
-      output.Con := Initialize_Con (Output => output,
-                                    Tree   => Tree); --  output_init_con(s);
-      Outputs.Init_Workspace (output, output.Con);
+      --output.Con := Initialize_Con (Output => output,
+                                    --Tree   => Tree); --  output_init_con(s);
+      --Outputs.Init_Workspace (output, output.Con);
       --  TAILQ_INSERT_TAIL(&outputs, s, outputs);
       Log.Decrease_Indent;
    end Fake_Single_Screen;
-
-   function Initialize_Con (Output : Outputs.Output;
-                             Tree   : Trees.Tree)
-                             return Cons.Con
-   is
-      con     : Cons.Con := Cons.Create;
-      Content : Cons.Con := Cons.Create;
-      Reused  : constant Boolean  := False;
-   begin
-      Log.Info ("Initializing con for output "
-         & Ada.Strings.Unbounded.To_String (Output.Name));
-
-      --  Search for a Con with that name directly below the root node. There
-      --  might be one from a restored layout.
-      --  ELSE:
-
-      con.Name   := Output.Name;
-      con.CType  := Cons.CT_OUTPUT;
-      con.Layout := Cons.L_OUTPUT;
-      --  TODO: con_Fix_percent(croot);
-      con.Rect   := Output.Rect;
-      --  x_set_name (con, "[adawm con] output", con.Name);
-
-      --  I'm too lazy for this now, but I can't stand this "lets break out of
-      --  a subroutine halfway" attitude. Please decide if this is a reused con
-      --  earlier on in the flow TODO FIXME YOLO
-      if Reused then
-         Log.Info ("Not adding workspace, this was a reused con");
-         return con;
-      end if;
-
-      --  Top dockarea could be added here TODO
-
-      Log.Info ("Adding main content container");
-      Content.CType := Cons.CT_CON;
-      Content.Layout := Cons.L_SPLITH;
-      Content.Name := Ada.Strings.Unbounded.To_Unbounded_String ("content");
-      --  x_set_name (con, "[adawm con] content ", Content.Name);
-      --  Content.Attach_To is disabled until it is implemented in cons.adb
-      Content := Content.Attach_To (con, False);
-
-      --  Bottom dockarea could be added here TODO
-      return con;
-   end Initialize_Con;
 
    procedure Initialize_Randr (Connection : xab_types.xab_connection_t) is
       Not_Implemented : exception;

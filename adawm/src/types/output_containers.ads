@@ -14,16 +14,11 @@ private
       record
          --  Output id, so that we can requery the output directly later
          Id : xab_types.xab_randr_output_t;
-         --  Name of the output
-         Name : Ada.Strings.Unbounded.Unbounded_String;
          Active : Boolean;
 
          --  Internal flags, necessary for querying Randr screens
          Changed : Boolean;
          To_Be_Deleted : Boolean;
          Primary : Boolean;
-
-         --  X, Y, width and height
-         Rect : Rectangles.Rectangle;
       end record;
 end Output_Containers;
