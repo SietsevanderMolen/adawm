@@ -15,5 +15,5 @@ package Cons is
          Name   : Ada.Strings.Unbounded.Unbounded_String;
       end record;
 
-   function "="(a, b: Con) return Boolean;
+   function "="(a, b : Con) return Boolean;
 end Cons;

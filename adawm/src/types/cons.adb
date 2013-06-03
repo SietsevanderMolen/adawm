@@ -1,10 +1,13 @@
-with Log;
+with Ada.Strings.Unbounded.Less_Case_Insensitive;
 
 package body Cons is
-   function "=" (a, b: Con)
+   function "=" (a, b : Con)
       return Boolean
    is
+      result : constant Boolean :=
+         Ada.Strings.Unbounded.Less_Case_Insensitive (a.Name,
+                                                      b.Name);
    begin
-      return True;
+      return result;
    end "=";
 end Cons;
