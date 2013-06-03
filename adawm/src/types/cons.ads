@@ -1,7 +1,7 @@
 with Ada.Containers.Doubly_Linked_Lists;
 with Ada.Strings.Unbounded;
 
-with Types;
+with Rectangles;
 with xab_types;
 
 --  A 'Con' represents everything from the X11 root window down to a single X11
@@ -51,11 +51,11 @@ package Cons is
          CType  : Con_Type;
          Parent : Con_Access;
 
-         Rect        : Types.Rectangle;
-         Window_Rect : Types.Rectangle;
-         Deco_Rect   : Types.Rectangle;
+         Rect        : Rectangles.Rectangle;
+         Window_Rect : Rectangles.Rectangle;
+         Deco_Rect   : Rectangles.Rectangle;
          --  The geometry this window requested when getting mapped
-         Geometry    : Types.Rectangle;
+         Geometry    : Rectangles.Rectangle;
 
          Name : Ada.Strings.Unbounded.Unbounded_String;
 
