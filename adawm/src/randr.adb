@@ -18,13 +18,13 @@ package body Randr is
       output.Rect.Y      := 0;
       output.Rect.Width  := root_screen.width_in_pixels;
       output.Rect.Height := root_screen.height_in_pixels;
-      --output.Active      := True;
+      --  output.Active      := True;
       output.Name        :=
          Ada.Strings.Unbounded.To_Unbounded_String ("xroot-0");
 
-      --output.Con := Initialize_Con (Output => output,
-                                    --Tree   => Tree); --  output_init_con(s);
-      --Outputs.Init_Workspace (output, output.Con);
+      --  output.Con := Initialize_Con (Output => output,
+      --  Tree   => Tree); --  output_init_con(s);
+      --  Outputs.Init_Workspace (output, output.Con);
       --  TAILQ_INSERT_TAIL(&outputs, s, outputs);
       Log.Decrease_Indent;
    end Fake_Single_Screen;
