@@ -1,4 +1,5 @@
 with Cons;
+with Log;
 --  The tree data structure contains all the Cons in the system
 package Trees is
    type Tree is tagged private;
@@ -8,6 +9,8 @@ package Trees is
    --  to the tree (that means randr_init() has to be called before) and
    --  assigning a workspace to each RandR output.
    function Create return Tree;
+   procedure Render (T: in out Trees.Tree);
+   procedure Unmap_All(T: in out Trees.Tree);
 private
    type Tree is tagged
       record
