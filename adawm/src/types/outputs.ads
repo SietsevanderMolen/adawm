@@ -3,7 +3,7 @@ with Ada.Strings.Unbounded;
 with xab_types;
 
 with Cons;
-with Types;
+with Rectangles;
 
 package Outputs is
    type Output is record
@@ -24,7 +24,7 @@ package Outputs is
       Primary       : Boolean;
 
       --  X, Y, width and height
-      Rect : Types.Rectangle;
+      Rect : Rectangles.Rectangle;
    end record;
 
    package Output_Container is
