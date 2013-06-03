@@ -1,6 +1,6 @@
 with Cons;
-with xab_types;
 with Rectangles;
+with xab_types;
 
 package Content_Containers is
    type Content_Container;

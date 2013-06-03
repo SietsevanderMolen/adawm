@@ -1,6 +1,6 @@
 with Cons;
-with xab_types;
 with Rectangles;
+with xab_types;
 
 package Split_Containers is
    type Split_Container;
