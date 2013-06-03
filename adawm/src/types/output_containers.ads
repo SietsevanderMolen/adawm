@@ -8,7 +8,12 @@ with Rectangles;
 package Output_Containers is
    type Output_Container is new Cons.Con with private;
 
+   --  Returns whether this output is currently active
    function Is_Active (OC : Output_Container) return Boolean;
+
+   --  Set whether this output is currently active
+   procedure Set_Active (OC        : out Output_Container;
+                         Is_Active : Boolean);
 private
    type Output_Container is new Cons.Con with
       record
