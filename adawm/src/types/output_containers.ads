@@ -4,7 +4,7 @@ with xab_types;
 
 with Rectangles;
 
-package Output_Container is
+package Output_Containers is
    type Output_Container;
    type Output_Container_Access is access all Output_Container;
 
@@ -26,4 +26,4 @@ private
          --  X, Y, width and height
          Rect : Rectangles.Rectangle;
       end record;
-end Output_Container;
+end Output_Containers;
