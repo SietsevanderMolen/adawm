@@ -8,6 +8,6 @@ package X11_Root_Windows is
 private
    type X11_Root_Window is new Cons.Con with
       record
-         Heu : Boolean;
+         Todo : Boolean;
       end record;
 end X11_Root_Windows;
