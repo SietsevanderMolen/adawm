@@ -18,9 +18,11 @@ package body Randr is
       output.Rect.Y      := 0;
       output.Rect.Width  := root_screen.width_in_pixels;
       output.Rect.Height := root_screen.height_in_pixels;
-      --  output.Active      := True;
       output.Name        :=
          Ada.Strings.Unbounded.To_Unbounded_String ("xroot-0");
+
+      --  Set this output to active
+      output.Set_Active (Is_Active => True);
 
       --  output.Con := Initialize_Con (Output => output,
       --  Tree   => Tree); --  output_init_con(s);
