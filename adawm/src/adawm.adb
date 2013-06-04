@@ -5,7 +5,7 @@ with xab_types;
 with ControlGroups;
 with Log;
 with Randr;
-with Trees;
+with Tree_Manager;
 
 procedure AdaWM is
    --  Our global connection to the X11 server
@@ -34,9 +34,12 @@ begin
    Log.Increase_Indent;
 
    Global_X_Connection := xab.xab_connect;
+   Tree_Manager.Init_Tree;
 
    Init_Outputs;
    Init_CGroups;
+
+   Log.Info (Tree_Manager.Tree_To_String);
 
    Log.Decrease_Indent;
    Log.Info ("Quit AdaWM");
