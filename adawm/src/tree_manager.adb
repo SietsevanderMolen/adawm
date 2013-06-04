@@ -1,6 +1,7 @@
 with Cons;
 with Content_Containers;
 with Log;
+with Workspaces;
 with X11_Root_Windows;
 
 package body Tree_Manager is
@@ -11,14 +12,16 @@ package body Tree_Manager is
       Ada.Strings.Unbounded.Append (Tree_String, Con.Name);
    end Add_Con_To_Tree_String;
 
+   --  Please fix this madness :-( TODO FIXME YOLO
    procedure Add_Output_Container
       (Output_Container : Output_Containers.Output_Container)
    is
-      Root                   : constant Trees.Containers.Cursor := Tree.Root;
-      X11_Win                : constant Trees.Containers.Cursor :=
+      Root              : constant Trees.Containers.Cursor := Tree.Root;
+      X11_Win           : constant Trees.Containers.Cursor :=
          Trees.Containers.First_Child (Root);
-      Content_Container      : constant Content_Containers.Content_Container :=
+      Content_Container : constant Content_Containers.Content_Container :=
          Content_Containers.Make;
+      Workspace         : constant Workspaces.Workspace := Workspaces.Make;
    begin
       Tree.Append_Child (Parent   => X11_Win,
                          New_Item => Output_Container);
@@ -30,6 +33,14 @@ package body Tree_Manager is
       begin
          Tree.Append_Child (Parent   => Output_Con,
                             New_Item => Content_Container);
+         declare
+            --  Find the cursor of the Content_Container
+            Content_Con : constant Trees.Containers.Cursor :=
+               Trees.Containers.First_Child (Output_Con);
+         begin
+            Tree.Append_Child (Parent   => Content_Con,
+                               New_Item => Workspace);
+         end;
       end;
    end Add_Output_Container;
 
@@ -39,8 +50,8 @@ package body Tree_Manager is
       X11_Win : constant X11_Root_Windows.X11_Root_Window :=
          X11_Root_Windows.Make;
    begin
+      Log.Info ("Initialising tree");
       Log.Increase_Indent;
-      Log.Info ("Creating tree");
       Log.Info ("Adding X11_Root_Window to tree");
       Tree.Append_Child (Parent   => Root,
                          New_Item => X11_Win);

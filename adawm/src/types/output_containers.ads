@@ -15,7 +15,7 @@ private
    type Output_Container is new Cons.Con with
       record
          --  Output id, so that we can requery the output directly later
-         Id : xab_types.xab_randr_output_t;
+         Output_Id : xab_types.xab_randr_output_t;
          Active : Boolean;
 
          --  Internal flags, necessary for querying Randr screens

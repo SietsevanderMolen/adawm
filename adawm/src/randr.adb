@@ -1,4 +1,4 @@
-with Ada.Strings.Unbounded;
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 with xab;
 
 with Output_Containers;
@@ -24,6 +24,9 @@ package body Randr is
 
       --  Set this output to active
       output.Set_Active (Is_Active => True);
+
+      Log.Info ("Created output " & To_String (output.Name) & " with size " &
+         output.Rect.Width'Img & " ," & output.Rect.Height'Img);
 
       --  Init output here
       Tree_Manager.Add_Output_Container (output);
