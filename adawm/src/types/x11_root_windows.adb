@@ -5,7 +5,8 @@ package body X11_Root_Windows is
    is
       X11_Win : X11_Root_Window;
    begin
-      X11_Win.Name := Ada.Strings.Unbounded.To_Unbounded_String ("X11 Root Window");
+      X11_Win.Name :=
+         Ada.Strings.Unbounded.To_Unbounded_String ("X11 Root Window");
 
       return X11_Win;
    end Make;

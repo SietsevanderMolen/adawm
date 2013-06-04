@@ -1,7 +1,6 @@
 with xab_types;
 
 with Cons;
-with X11_Root_Windows;
 
 package Output_Containers is
    type Output_Container is new Cons.Con with private;

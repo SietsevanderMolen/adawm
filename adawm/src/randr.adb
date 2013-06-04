@@ -32,6 +32,7 @@ package body Randr is
    end Fake_Single_Screen;
 
    procedure Initialize_Randr (Connection : xab_types.xab_connection_t) is
+      pragma Unreferenced (Connection);
       Not_Implemented : exception;
    begin
       Log.Info ("Initialising RandR");

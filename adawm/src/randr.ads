@@ -1,7 +1,5 @@
 with xab_types;
 
-with Trees;
-
 package Randr is
    procedure Initialize_Randr (Connection : xab_types.xab_connection_t);
 

@@ -1,11 +1,12 @@
 with Cons;
+with Content_Containers;
 with Log;
 with X11_Root_Windows;
 
 package body Tree_Manager is
    procedure Add_Con_To_Tree_String (Position : in Trees.Containers.Cursor)
    is
-      Con : Cons.Con'Class := Trees.Containers.Element (Position);
+      Con : constant Cons.Con'Class := Trees.Containers.Element (Position);
    begin
       Ada.Strings.Unbounded.Append (Tree_String, Con.Name);
    end Add_Con_To_Tree_String;
@@ -13,18 +14,30 @@ package body Tree_Manager is
    procedure Add_Output_Container
       (Output_Container : Output_Containers.Output_Container)
    is
-      Root    : constant Trees.Containers.Cursor := Tree.Root;
-      X11_Win : constant Trees.Containers.Cursor :=
+      Root                   : constant Trees.Containers.Cursor := Tree.Root;
+      X11_Win                : constant Trees.Containers.Cursor :=
          Trees.Containers.First_Child (Root);
+      Content_Container      : constant Content_Containers.Content_Container :=
+         Content_Containers.Make;
    begin
       Tree.Append_Child (Parent   => X11_Win,
                          New_Item => Output_Container);
+      --  Add the output now
+      declare
+         --  Find the cursor of the X11_Root_Window
+         Output_Con : constant Trees.Containers.Cursor :=
+            Trees.Containers.First_Child (X11_Win);
+      begin
+         Tree.Append_Child (Parent   => Output_Con,
+                            New_Item => Content_Container);
+      end;
    end Add_Output_Container;
 
    procedure Init_Tree
    is
       Root    : constant Trees.Containers.Cursor := Tree.Root;
-      X11_Win : X11_Root_Windows.X11_Root_Window := X11_Root_Windows.Make;
+      X11_Win : constant X11_Root_Windows.X11_Root_Window :=
+         X11_Root_Windows.Make;
    begin
       Log.Increase_Indent;
       Log.Info ("Creating tree");
