@@ -29,8 +29,25 @@ procedure AdaWM is
    begin
       Randr.Fake_Single_Screen (Global_X_Connection);
    end Init_Outputs;
+
+   task Main_Loop is
+      entry Start;
+      entry Event;
+   end Main_Loop;
+   task body Main_Loop is
+   begin
+      accept Start;
+         loop
+            select
+            accept Event;
+               null;
+            end select;
+            null;
+         end loop;
+   end Main_Loop;
 begin
    Log.Info ("Starting AdaWM");
+   Log.Info ("Initialise");
    Log.Increase_Indent;
 
    Global_X_Connection := xab.xab_connect;
@@ -42,5 +59,7 @@ begin
    Log.Info (Tree_Manager.Tree_To_String);
 
    Log.Decrease_Indent;
-   Log.Info ("Quit AdaWM");
+   Log.Info ("Init done");
+   Log.Info ("Starting main loop");
+   Main_Loop.Start;
 end AdaWM;
