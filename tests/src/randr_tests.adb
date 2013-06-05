@@ -4,7 +4,6 @@ with xab;
 with xab_types;
 
 with Randr;
-with Trees;
 
 package body Randr_Tests is
      X_Connection : constant xab_types.xab_connection_t 
@@ -21,9 +20,8 @@ package body Randr_Tests is
    end Initialize;
 
    procedure Test_Fake_Single_Screen_Exception_Absence is
-      Test_Tree : constant Trees.Tree := Trees.Create;
    begin
-        Randr.Fake_Single_Screen (X_Connection, Test_Tree);
+        Randr.Fake_Single_Screen (X_Connection);
    end Test_Fake_Single_Screen_Exception_Absence;
 
    procedure Test_Initialize_Con is
