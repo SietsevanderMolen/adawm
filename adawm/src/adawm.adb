@@ -1,6 +1,7 @@
 --  vim:ts=3:expandtab:tw=79:colorcolumn=79
 with xab;
 with xab_types;
+with Xab_Events.Event_Loop;
 
 with ControlGroups;
 with Log;
@@ -30,21 +31,6 @@ procedure AdaWM is
       Randr.Fake_Single_Screen (Global_X_Connection);
    end Init_Outputs;
 
-   task Main_Loop is
-      entry Start;
-      entry Event;
-   end Main_Loop;
-   task body Main_Loop is
-   begin
-      accept Start;
-         loop
-            select
-            accept Event;
-               null;
-            end select;
-            null;
-         end loop;
-   end Main_Loop;
 begin
    Log.Info ("Starting AdaWM");
    Log.Info ("Initialise");
@@ -61,5 +47,10 @@ begin
    Log.Decrease_Indent;
    Log.Info ("Init done");
    Log.Info ("Starting main loop");
-   Main_Loop.Start;
+
+   declare
+      Main_Loop : Xab_Events.Event_Loop.Main_Loop;
+   begin
+      null;
+   end;
 end AdaWM;
