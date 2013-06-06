@@ -48,9 +48,5 @@ begin
    Log.Info ("Init done");
    Log.Info ("Starting main loop");
 
-   declare
-      Main_Loop : Xab_Events.Event_Loop.Main_Loop;
-   begin
-      null;
-   end;
+   Xab_Events.Event_Loop.start_event_loop (Global_X_Connection);
 end AdaWM;
