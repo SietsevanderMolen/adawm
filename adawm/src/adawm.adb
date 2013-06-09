@@ -1,6 +1,6 @@
 --  vim:ts=3:expandtab:tw=79:colorcolumn=79
-with xab;
-with xab_types;
+with Xab;
+with Xab_Types;
 with Xab_Events.Event_Loop;
 
 with ControlGroups;
@@ -12,7 +12,7 @@ procedure AdaWM is
    --  Our global connection to the X11 server
    --  Connect to the X11 display server. xab_connect checks if the connection
    --  succeeded and raises ConnectionFailedException
-   Global_X_Connection : xab_types.xab_connection_t;
+   Global_X_Connection : Xab_Types.Xab_Connection_T;
 
    --  Init cgroups if these are available
    procedure Init_CGroups;
@@ -36,7 +36,7 @@ begin
    Log.Info ("Initialise");
    Log.Increase_Indent;
 
-   Global_X_Connection := xab.xab_connect;
+   Global_X_Connection := Xab.Xab_Connect;
    Tree_Manager.Init_Tree;
 
    Init_Outputs;

@@ -1,5 +1,5 @@
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
-with xab;
+with Xab;
 
 with Output_Containers;
 with Log;
@@ -7,18 +7,18 @@ with Tree_Manager;
 
 package body Randr is
    --  Creates a single output stretching across the entire root_screen
-   procedure Fake_Single_Screen (Connection : xab_types.xab_connection_t) is
+   procedure Fake_Single_Screen (Connection : Xab_Types.Xab_Connection_T) is
       output : Output_Containers.Output_Container;
-      root_screen : constant xab_types.xab_screen_t :=
-         xab.xab_get_root_screen (Connection);
+      root_screen : constant Xab_Types.Xab_Screen_T :=
+         Xab.Xab_Get_Root_Screen (Connection);
    begin
       Log.Warning ("Faking single RandR screen");
       Log.Increase_Indent;
 
       output.Rect.X      := 0;
       output.Rect.Y      := 0;
-      output.Rect.Width  := root_screen.width_in_pixels;
-      output.Rect.Height := root_screen.height_in_pixels;
+      output.Rect.Width  := root_screen.Width_In_Pixels;
+      output.Rect.Height := root_screen.Height_In_Pixels;
       output.Name        :=
          Ada.Strings.Unbounded.To_Unbounded_String ("xroot-0");
 
@@ -34,7 +34,7 @@ package body Randr is
       Log.Decrease_Indent;
    end Fake_Single_Screen;
 
-   procedure Initialize_Randr (Connection : xab_types.xab_connection_t) is
+   procedure Initialize_Randr (Connection : Xab_Types.Xab_Connection_T) is
       pragma Unreferenced (Connection);
       Not_Implemented : exception;
    begin
@@ -45,8 +45,8 @@ package body Randr is
 
    --  Not implemented
    procedure Query_Outputs
-      (Connection : xab_types.xab_connection_t;
-       Window     : xab_types.xab_window_t)
+      (Connection : Xab_Types.Xab_Connection_T;
+       Window     : Xab_Types.Xab_Window_T)
    is
       --  Other_Output     : Outputs.Output;
       --  Resources_Cookie :

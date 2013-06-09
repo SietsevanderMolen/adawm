@@ -1,8 +1,5 @@
-with xab_types;
-
 with Cons;
 with Layout_Types;
-with Rectangles;
 
 package Workspaces is
    type Workspace;

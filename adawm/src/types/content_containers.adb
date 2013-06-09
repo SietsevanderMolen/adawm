@@ -5,7 +5,8 @@ package body Content_Containers is
    is
       CC : Content_Container;
    begin
-      CC.Name := Ada.Strings.Unbounded.To_Unbounded_String ("Content_Container");
+      CC.Name := Ada.Strings.Unbounded.To_Unbounded_String
+         ("Content_Container");
       return CC;
    end Make;
 end Content_Containers;

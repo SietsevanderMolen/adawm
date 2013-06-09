@@ -1,4 +1,4 @@
-with xab_types;
+with Xab_Types;
 
 with Cons;
 
@@ -15,12 +15,12 @@ private
    type Output_Container is new Cons.Con with
       record
          --  Output id, so that we can requery the output directly later
-         Output_Id : xab_types.xab_randr_output_t;
-         Active : Boolean;
+         Output_Id : Xab_Types.Xab_Randr_Output_T;
+         Active    : Boolean;
 
          --  Internal flags, necessary for querying Randr screens
-         Changed : Boolean;
+         Changed       : Boolean;
          To_Be_Deleted : Boolean;
-         Primary : Boolean;
+         Primary       : Boolean;
       end record;
 end Output_Containers;
