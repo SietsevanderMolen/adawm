@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Adawm</title>
+    <title>AdaWM</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -26,7 +26,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1 class="header">Adawm</h1>
+        <h1 class="header">AdaWM</h1>
         <p class="header">Tiling window manager written in Ada.</p>
 
         <ul>
@@ -41,26 +41,49 @@
 
       </header>
       <section>
-        <h3>
-		<a name="welcome-to-github-pages" class="anchor"
+        <h3><a name="welcome-to-github-pages" class="anchor"
 		   href="#welcome-to-github-pages"><span class="octicon
-		   octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+		   octicon-link"></span></a>Goals & Aim</h3>
+		<p>AdaWM aims to be a well thought out and simple tiling window
+		manager for Linux. It owes a large part of it's design to the
+		magnificent window manager i3.</p>
 
-		<p>Adawm is a tiling window manager for the X windowing system
-		written in Ada.
-		</p>
+		<h3><a name="welcome-to-github-pages" class="anchor"
+		   href="#welcome-to-github-pages"><span class="octicon
+		   octicon-link"></span></a>Planned features</h3>
+		<p><ul><li>Scriptability using an IPC</li>
+		<li>Good handling of multi monitor set-ups using RandR or Xinerama</li>
+		<li>Containers implemented as a tree data structure</li>
+		<li>Easily readable and well thought out code</li></ul></p>
 
-		<p>To try it out, clone xcb_ada, xab, and adawm and make install
-		them.
+		<h3><a name="welcome-to-github-pages" class="anchor"
+		   href="#welcome-to-github-pages"><span class="octicon
+		   octicon-link"></span></a>Requirements</h3>
+		<p>To build AdaWM you need
+		<ul><li>An Ada compiler</li>
+		<li>The GNATCOLL toolkit (Used for the tree data structure and
+		commandline parsing)</li>
+		<li>The X Ada binding, xab</li></ul></p>
 
-		<h3>
-		<a name="support-or-contact" class="anchor"
-	   	   href="#support-or-contact"><span class="octicon
-		   octicon-link"></span></a>Support or Contact</h3>
+		<h3><a name="welcome-to-github-pages" class="anchor"
+		   href="#welcome-to-github-pages"><span class="octicon
+		   octicon-link"></span></a>Roadmap</h3>
+		<ul><li>Further finishing and polishing of the code</li>
+		<li>Produce secondary tools like an IPC client, bar
+		etc.</li></ul></p>
 
+		<h3><a name="welcome-to-github-pages" class="anchor"
+		   href="#welcome-to-github-pages"><span class="octicon
+		   octicon-link"></span></a>Todo/Bugs</h3>
+		<ul><li>Most of the basic window manager code still needs work,
+			as of now it doesn't actually manage any windows</li>
+		<li>RandR is currently bypassed and faked by using a screen as
+		large as the outputs combined, it should be properly
+		implemented</li>
+		<li>Xinerama is not implemented at all, but this is low
+		priority</li></ul></p>
       </section>
       <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
       </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
