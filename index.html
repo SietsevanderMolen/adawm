@@ -3,90 +3,85 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>AdaWM</title>
+    <title>AdaWM by SietsevanderMolen</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-11118774-2', 'sietsevandermolen.github.io');
-      ga('send', 'pageview');
-    
-    </script>
   </head>
   <body>
     <div class="wrapper">
       <header>
-        <h1 class="header">AdaWM</h1>
-        <p class="header">Tiling window manager written in Ada.</p>
+        <h1>AdaWM</h1>
+        <p>Tiling window manager written in Ada.</p>
+
+        <p class="view"><a href="https://github.com/SietsevanderMolen/adawm">View the Project on GitHub <small>SietsevanderMolen/adawm</small></a></p>
+
 
         <ul>
-          <li class="download"><a class="buttons" href="https://github.com/SietsevanderMolen/adawm/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/SietsevanderMolen/adawm/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/SietsevanderMolen/adawm">View On GitHub</a></li>
+          <li><a href="https://github.com/SietsevanderMolen/adawm/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/SietsevanderMolen/adawm/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/SietsevanderMolen/adawm">View On <strong>GitHub</strong></a></li>
         </ul>
-
-	<p class="header">This project is maintained by <a class="header name"
-	   href="https://github.com/SietsevanderMolen">Sietse van der Molen</a></p>
-
-
       </header>
       <section>
-        <h3><a name="welcome-to-github-pages" class="anchor"
-		   href="#welcome-to-github-pages"><span class="octicon
-		   octicon-link"></span></a>Goals & Aim</h3>
-		<p>AdaWM aims to be a well thought out and simple tiling window
-		manager for Linux. It owes a large part of it's design to the
-		magnificent window manager i3.</p>
+        <h3>
+<a name="goals-and-aim" class="anchor" href="#goals-and-aim"><span class="octicon octicon-link"></span></a>Goals and aim</h3>
 
-		<h3><a name="welcome-to-github-pages" class="anchor"
-		   href="#welcome-to-github-pages"><span class="octicon
-		   octicon-link"></span></a>Planned features</h3>
-		<p><ul><li>Scriptability using an IPC</li>
-		<li>Good handling of multi monitor set-ups using RandR or Xinerama</li>
-		<li>Containers implemented as a tree data structure</li>
-		<li>Easily readable and well thought out code</li></ul></p>
+<p>AdaWM aims to be a well thought out and simple tiling window
+manager for Linux. It owes a large part of it's design to the magnificent window manager i3.</p>
 
-		<h3><a name="welcome-to-github-pages" class="anchor"
-		   href="#welcome-to-github-pages"><span class="octicon
-		   octicon-link"></span></a>Requirements</h3>
-		<p>To build AdaWM you need
-		<ul><li>An Ada compiler</li>
-		<li>The GNATCOLL toolkit (Used for the tree data structure and
-		commandline parsing)</li>
-		<li>The X Ada binding, xab</li></ul></p>
+<h3>
+<a name="goals-and-features" class="anchor" href="#goals-and-features"><span class="octicon octicon-link"></span></a>Goals and Features</h3>
 
-		<h3><a name="welcome-to-github-pages" class="anchor"
-		   href="#welcome-to-github-pages"><span class="octicon
-		   octicon-link"></span></a>Roadmap</h3>
-		<ul><li>Further finishing and polishing of the code</li>
-		<li>Produce secondary tools like an IPC client, bar
-		etc.</li></ul></p>
+<ul>
+<li>Scriptability using an IPC</li>
+<li>Good handling of multi monitor set-ups using RandR or Xinerama</li>
+<li>Containers implemented as a tree data structure</li>
+<li>Easily readable and well thought out code</li>
+</ul><h3>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements?</h3>
 
-		<h3><a name="welcome-to-github-pages" class="anchor"
-		   href="#welcome-to-github-pages"><span class="octicon
-		   octicon-link"></span></a>Todo/Bugs</h3>
-		<ul><li>Most of the basic window manager code still needs work,
-			as of now it doesn't actually manage any windows</li>
-		<li>RandR is currently bypassed and faked by using a screen as
-		large as the outputs combined, it should be properly
-		implemented</li>
-		<li>Xinerama is not implemented at all, but this is low
-		priority</li></ul></p>
+<p>To run AdaWM you need</p>
+
+<ul>
+<li>An Ada compiler</li>
+<li>The GNATCOLL toolkit (Used for the tree data structure and commandline parsing)</li>
+<li>The X Ada binding, xab</li>
+</ul><h3>
+<a name="roadmap" class="anchor" href="#roadmap"><span class="octicon octicon-link"></span></a>Roadmap</h3>
+
+<ul>
+<li>Further finishing and polishing of the code</li>
+<li>Produce secondary tools like an IPC client, bar etc.</li>
+</ul><h3>
+<a name="todobugs" class="anchor" href="#todobugs"><span class="octicon octicon-link"></span></a>Todo/Bugs</h3>
+
+<ul>
+<li>Most of the basic window manager code still needs work, as of now it doesn't actually manage any windows</li>
+<li>RandR is currently bypassed and faked by using a screen as large as the outputs combined, it should be properly implemented</li>
+<li>Xinerama is not implemented at all, but this is low priority</li>
+</ul>
       </section>
       <footer>
+        <p>This project is maintained by <a href="https://github.com/SietsevanderMolen">SietsevanderMolen</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-11118774-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
