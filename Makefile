@@ -7,7 +7,7 @@ test:
 coverage:
 	gprbuild -p -f -Ptests/tests -XCOVERAGE=yes
 	./out/test_adawm
-	cd harness/obj; gcov ../../adawm/obj/*.gcda
+	cd tests/obj; gcov ../../adawm/obj/*.gcda
 
 clean:
 	gprclean -Padawm/adawm
