@@ -16,7 +16,7 @@ To compile AdaWM you need
 
 * An Ada compiler
 * The GNATCOLL toolkit (Used for the tree datastructure and commandline parsing)
-* The X Ada binding, xab
+* The X Ada Binding, [XAB](https://github.com/SietsevanderMolen/xab)
 
 Architecture
 ------------
