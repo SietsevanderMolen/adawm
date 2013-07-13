@@ -69,4 +69,4 @@ begin
 
    Xab_Events.Event_Loop.start_event_loop (Global_X_Connection);
 end AdaWM;
---  vim:ts=3:expandtab:tw=79:colorcolumn=79
+--  vim:ts=3:expandtab:tw=80
