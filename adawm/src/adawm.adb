@@ -18,7 +18,6 @@
 --    along with AdaWM.  If not, see <http://www.gnu.org/licenses/>.         --
 --                                                                           --
 -------------------------------------------------------------------------------
---  vim:ts=3:expandtab:tw=79:colorcolumn=79
 with Xab;
 with Xab_Types;
 with Xab_Events.Event_Loop;
@@ -70,3 +69,4 @@ begin
 
    Xab_Events.Event_Loop.start_event_loop (Global_X_Connection);
 end AdaWM;
+--  vim:ts=3:expandtab:tw=79:colorcolumn=79
