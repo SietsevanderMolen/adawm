@@ -20,7 +20,6 @@
 -------------------------------------------------------------------------------
 with Xab;
 with Xab_Types;
-with Xab_Events.Event_Loop;
 
 with ControlGroups;
 with Log;
@@ -66,7 +65,5 @@ begin
    Log.Decrease_Indent;
    Log.Info ("Init done");
    Log.Info ("Starting main loop");
-
-   Xab_Events.Event_Loop.start_event_loop (Global_X_Connection);
 end AdaWM;
 --  vim:ts=3:expandtab:tw=80
