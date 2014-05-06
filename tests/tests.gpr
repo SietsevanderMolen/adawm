@@ -1,6 +1,7 @@
 with "../adawm/adawm";
 
 with "xab";
+with "ahven";
 
 project Harness is
    for Languages use ("Ada");
