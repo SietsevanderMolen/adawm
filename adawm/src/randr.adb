@@ -27,10 +27,10 @@ with Tree_Manager;
 
 package body Randr is
    --  Creates a single output stretching across the entire root_screen
-   procedure Fake_Single_Screen (Connection : Xab_Types.Xab_Connection_T) is
+   procedure Fake_Single_Screen (Connection : Xab_Types.Connection) is
       output : Output_Containers.Output_Container;
-      root_screen : constant Xab_Types.Xab_Screen_T :=
-         Xab.Xab_Get_Root_Screen (Connection);
+      root_screen : constant Xab_Types.Screen :=
+         Xab.Get_Root_Screen (Connection);
    begin
       Log.Warning ("Faking single RandR screen");
       Log.Increase_Indent;
@@ -54,7 +54,7 @@ package body Randr is
       Log.Decrease_Indent;
    end Fake_Single_Screen;
 
-   procedure Initialize_Randr (Connection : Xab_Types.Xab_Connection_T) is
+   procedure Initialize_Randr (Connection : Xab_Types.Connection) is
       pragma Unreferenced (Connection);
       Not_Implemented : exception;
    begin
@@ -65,8 +65,8 @@ package body Randr is
 
    --  Not implemented
    procedure Query_Outputs
-      (Connection : Xab_Types.Xab_Connection_T;
-       Window     : Xab_Types.Xab_Window_T)
+      (Connection : Xab_Types.Connection;
+       Window     : Xab_Types.Window)
    is
       --  Other_Output     : Outputs.Output;
       --  Resources_Cookie :

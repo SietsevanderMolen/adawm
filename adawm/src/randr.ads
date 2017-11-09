@@ -21,12 +21,12 @@
 with Xab_Types;
 
 package Randr is
-   procedure Initialize_Randr (Connection : Xab_Types.Xab_Connection_T);
+   procedure Initialize_Randr (Connection : Xab_Types.Connection);
 
-   procedure Fake_Single_Screen (Connection  : Xab_Types.Xab_Connection_T);
+   procedure Fake_Single_Screen (Connection  : Xab_Types.Connection);
 
    procedure Query_Outputs
-      (Connection : Xab_Types.Xab_Connection_T;
-       Window     : Xab_Types.Xab_Window_T);
+      (Connection : Xab_Types.Connection;
+       Window     : Xab_Types.Window);
 end Randr;
 --  vim:ts=3:expandtab:tw=80

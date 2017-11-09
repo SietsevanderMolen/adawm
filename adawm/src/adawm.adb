@@ -30,7 +30,7 @@ procedure AdaWM is
    --  Our global connection to the X11 server
    --  Connect to the X11 display server. xab_connect checks if the connection
    --  succeeded and raises ConnectionFailedException
-   Global_X_Connection : Xab_Types.Xab_Connection_T;
+   Global_X_Connection : Xab_Types.Connection;
 
    --  Init the outputs according to their physical configuration
    procedure Init_Outputs;
@@ -45,7 +45,7 @@ begin
    Log.Info ("Initialising");
    Log.Increase_Indent;
 
-   Global_X_Connection := Xab.Xab_Connect;
+   Global_X_Connection := Xab.Connect;
    Tree_Manager.Init_Tree;
 
    Init_Outputs;
