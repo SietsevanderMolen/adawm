@@ -19,51 +19,35 @@
 --                                                                           --
 -------------------------------------------------------------------------------
 with Xab;
-with Xab_Types;
-with Xab_Events.Event_Loop;
 
-with Event_Loop;
-with Log;
-with Randr;
-with Tree_Manager;
-
-procedure AdaWM is
-   --  Our global connection to the X11 server
-   --  Connect to the X11 display server. xab_connect checks if the connection
-   --  succeeded and raises ConnectionFailedException
-   Global_X_Connection : constant Xab_Types.Connection := Xab.Connect;
-
-   Root_Screen : constant Xab_Types.Screen :=
-      Xab.Get_Root_Screen (Global_X_Connection);
-
-   --  TODO need a better way to do this
-   Events_To_Watch : Xab_Types.Event_Mask := (
-         Xab_Types."or"
-            (Xab_Types."or" (Xab_Types.EVENT_MASK_SUBSTRUCTURE_REDIRECT,
-                             Xab_Types.EVENT_MASK_SUBSTRUCTURE_NOTIFY),
-                             Xab_Types.EVENT_MASK_STRUCTURE_NOTIFY)
-      );
-
-   --  Init the outputs according to their physical configuration
-   procedure Init_Outputs;
-   procedure Init_Outputs
+package body Event_Loop is
+   procedure Handle_Event (e : in Xab_Events.Generic_Event'Class)
    is
    begin
-      Randr.Fake_Single_Screen (Global_X_Connection);
-   end Init_Outputs;
-begin
-   Log.Info ("Starting AdaWM");
+      null;
+   end Handle_Event;
 
-   Log.Info ("Initialising");
-   Log.Increase_Indent;
-   Tree_Manager.Init_Tree;
-   Init_Outputs;
-   Log.Info (Tree_Manager.Tree_To_String);
-   Log.Decrease_Indent;
-   Log.Info ("Init done");
-
-   Log.Info ("Starting main loop");
-   Event_Loop.Start (Connection => Global_X_Connection,
-                     Event_Mask => Events_To_Watch);
-end AdaWM;
+   procedure Start (Connection : Xab_Types.Connection;
+                    Event_Mask : Xab_Types.Event_Mask)
+   is
+      --  xcbada_xproto.xcb_change_window_attributes (
+      --    dpy, root, xcbada_xproto.XCB_CW_EVENT_MASK,
+      --    events_we_listen_to'Access);
+      task Main_Loop is
+      end Main_Loop;
+      task body Main_Loop is
+      begin
+         loop
+            declare
+               Event : Xab_Events.Generic_Event'class :=
+                  Xab.Wait_For_Event (Connection);
+            begin
+               Handle_Event (Event);
+            end;
+         end loop;
+      end Main_Loop;
+   begin
+      null;
+   end Start;
+end Event_Loop;
 --  vim:ts=3:sts=3:sw=3:expandtab:tw=80
