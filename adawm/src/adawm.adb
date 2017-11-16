@@ -20,7 +20,6 @@
 -------------------------------------------------------------------------------
 with Xab;
 with Xab_Types;
-with Xab_Events.Event_Loop;
 
 with Event_Loop;
 with Log;
