@@ -20,29 +20,46 @@
 -------------------------------------------------------------------------------
 with Xab;
 
+with Ada.Text_IO;
+with Ada.Tags; use Ada.Tags;
+
 package body Event_Loop is
-   procedure Handle_Event (e : in Xab_Events.Generic_Event'Class)
+   procedure Handle_Event (Connection : Xab_Types.Connection;
+                           e : in Xab_Events.Generic_Event'Class)
    is
    begin
-      null;
+      if e'Tag = Xab_Events.Configure_Request'Tag then
+         declare
+            ne : constant Xab_Events.Configure_Request :=
+               Xab_Events.Configure_Request (e);
+         begin
+            Xab.Configure_Window (Connection, ne.Window, ne.X, ne.Y,
+                                  ne.Width, ne.Height);
+         end;
+      elsif e'Tag = Xab_Events.Map_Request'Tag then
+         declare
+            ne : constant Xab_Events.Map_Request := Xab_Events.Map_Request (e);
+         begin
+            Xab.Map_Window (Connection, ne.Window);
+         end;
+      elsif e'Tag = Xab_Events.None'Tag then
+         Ada.Text_IO.Put_Line ("Got ev type: " & Integer'Image
+            (Xab_Events.None (e).Response_Type));
+      end if;
    end Handle_Event;
 
-   procedure Start (Connection : Xab_Types.Connection;
-                    Event_Mask : Xab_Types.Event_Mask)
+   procedure Start (Connection : Xab_Types.Connection)
    is
-      --  xcbada_xproto.xcb_change_window_attributes (
-      --    dpy, root, xcbada_xproto.XCB_CW_EVENT_MASK,
-      --    events_we_listen_to'Access);
       task Main_Loop is
       end Main_Loop;
       task body Main_Loop is
       begin
          loop
             declare
-               Event : Xab_Events.Generic_Event'class :=
+               Event : constant Xab_Events.Generic_Event'class :=
                   Xab.Wait_For_Event (Connection);
             begin
-               Handle_Event (Event);
+               Handle_Event (Connection, Event);
             end;
          end loop;
       end Main_Loop;

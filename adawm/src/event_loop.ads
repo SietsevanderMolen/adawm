@@ -23,9 +23,9 @@ with Xab_Types;
 
 package Event_Loop is
    --  Starts the main event loop
-   procedure Start (Connection : Xab_Types.Connection;
-                    Event_Mask : Xab_Types.Event_Mask);
+   procedure Start (Connection : Xab_Types.Connection);
 private
-   procedure Handle_Event (e : in Xab_Events.Generic_Event'Class);
+   procedure Handle_Event (Connection : Xab_Types.Connection;
+                           e : in Xab_Events.Generic_Event'Class);
 end Event_Loop;
 --  vim:ts=3:sts=3:sw=3:expandtab:tw=80

@@ -36,14 +36,6 @@ procedure AdaWM is
    Root_Screen : constant Xab_Types.Screen :=
       Xab.Get_Root_Screen (Global_X_Connection);
 
-   --  TODO need a better way to do this
-   Events_To_Watch : Xab_Types.Event_Mask := (
-         Xab_Types."or"
-            (Xab_Types."or" (Xab_Types.EVENT_MASK_SUBSTRUCTURE_REDIRECT,
-                             Xab_Types.EVENT_MASK_SUBSTRUCTURE_NOTIFY),
-                             Xab_Types.EVENT_MASK_STRUCTURE_NOTIFY)
-      );
-
    --  Init the outputs according to their physical configuration
    procedure Init_Outputs;
    procedure Init_Outputs
@@ -62,8 +54,23 @@ begin
    Log.Decrease_Indent;
    Log.Info ("Init done");
 
+   declare
+      CW_Mask : Xab_Types.CW := (EVENT_MASK => 1, others => 0);
+      --  The Events we need to catch in the event loop
+      Events_To_Watch : Xab_Types.Event_Mask := (SUBSTRUCTURE_REDIRECT => 1,
+                                                 SUBSTRUCTURE_NOTIFY   => 1,
+                                                 STRUCTURE_NOTIFY      => 1,
+                                                 BUTTON_PRESS          => 1,
+                                                 others => 0);
+      Values : Xab_Types.Integer_Array := (1 => Integer (Xab_Types.Pack (Events_To_Watch)));
+   begin
+      Xab.Change_Window_Attributes (Connection => Global_X_Connection,
+                                    Win        => Root_Screen.Root,
+                                    Value_Mask => CW_Mask,
+                                    Value_List => Values);
+   end;
+
    Log.Info ("Starting main loop");
-   Event_Loop.Start (Connection => Global_X_Connection,
-                     Event_Mask => Events_To_Watch);
+   Event_Loop.Start (Connection => Global_X_Connection);
 end AdaWM;
 --  vim:ts=3:sts=3:sw=3:expandtab:tw=80
