@@ -61,7 +61,8 @@ begin
                                                  STRUCTURE_NOTIFY      => 1,
                                                  BUTTON_PRESS          => 1,
                                                  others => 0);
-      Values : Xab_Types.Integer_Array := (1 => Integer (Xab_Types.Pack (Events_To_Watch)));
+      Values : Xab_Types.Integer_Array :=
+         (1 => Integer (Xab_Types.Pack (Events_To_Watch)));
    begin
       Xab.Change_Window_Attributes (Connection => Global_X_Connection,
                                     Win        => Root_Screen.Root,
